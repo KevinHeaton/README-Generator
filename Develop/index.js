@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 
 const inquirer = require("inquirer");
-
+const markdown = require('./utils/generateMarkdown.js');
 // TODO: Create an array of questions for user input
 const questions = () => {
     return inquirer.prompt([
@@ -110,14 +110,15 @@ const questions = () => {
             }
         },
         {
-            type: 'lise',
+            type: 'list',
             name: 'license',
             message: 'What license would you like to attach to your project? (Required)',
-            choices: []
+            choices: ['None', 'GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense'],
+            default: [0]
         },
     ]);
 };
-
+questions();
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
@@ -126,3 +127,15 @@ function init() {}
 
 // Function call to initialize app
 init();
+
+
+// const mockData = {
+//     title: 'README Generator',
+//     github: 'KevinHeaton',
+//     email: 'williamkevinheaton@gmail.com',
+//     description: 'Automatically generates a professional README file for your project.',
+//     install: 'This is how you install this project.',
+//     usage: 'This is how you use this project.',
+//     contribution: 'This is how you contribute to this project.',
+//     test: 'This is how to test it.'
+// };
