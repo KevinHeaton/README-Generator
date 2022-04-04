@@ -116,52 +116,58 @@ const questions = () => {
             choices: ['None', 'GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense'],
             default: [0]
         },
-    ])
-    .then(data => {
-         questionData.push(data);
-    });
+        {
+            type: 'input',
+            name: 'fileName',
+            message: 'What would you like to name your README? (required)',
+            validate: fileNameInput => {
+                if (fileNameInput) {
+                    return true;
+                } else {
+                    console.log('Please name your README!');
+                    return false;
+                }
+            }
+        }
+    ]);
 };
 
-// const mockData = {
-//     title: 'README Generator',
-//     github: 'KevinHeaton',
-//     email: 'williamkevinheaton@gmail.com',
-//     description: 'Automatically generates a professional README file for your project.',
-//     install: 'This is how you install this project.',
-//     usage: 'This is how you use this project.',
-//     contribution: 'This is how you contribute to this project.',
-//     test: 'This is how to test it.'
-// };
+const mockData = {
+    title: 'README Generator',
+    github: 'KevinHeaton',
+    email: 'williamkevinheaton@gmail.com',
+    description: 'Automatically generates a professional README file for your project.',
+    install: 'This is how you install this project.',
+    usage: 'This is how you use this project.',
+    contribution: 'This is how you contribute to this project.',
+    test: 'This is how to test it.'
+};
+
+// const fileName = 'README.md';
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/README.md', data, err => {
-            if (err) {
-                reject(err);
-                return
-            }
+    fs.appendFile(`${fileName}.md`, data, 
+    (err) => err ? console.error(err) : console.log('Your README has been created!'));
+};
+// TODO: Create a function to initialize app
 
-            resolve({
-                ok: true,
-                message: 'README created!'
-            });
-        });
-    });
+async function init() {
+    let answers = await questions();
+    writeToFile((answers.fileName), (generateMarkdown(answers)));
 };
 
-// TODO: Create a function to initialize app
-//function init() {}
-
-const readMe = questions(questionData);
+//const readMe = questions(questionData);
 
 // Function call to initialize app
-//init();
-questions()
-.then(questionData => {
-    return generateMarkdown(questionData);
-})
-.then(readMe => {
-    return writeToFile(readMe);
-})
+init();
 
+
+
+// questions()
+// .then(questionData => {
+//     return generateMarkdown(questionData);
+// })
+// .then(readMe => {
+//     return writeToFile(readMe);
+// })
