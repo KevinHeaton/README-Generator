@@ -1,9 +1,9 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require("inquirer");
-const markdown = require('./utils/generateMarkdown.js');
+const generateMarkdown = require('./utils/generateMarkdown.js');
 // TODO: Create an array of questions for user input
-const questions = questionData => {
+const questions = () => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -116,13 +116,27 @@ const questions = questionData => {
             choices: ['None', 'GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense'],
             default: [0]
         },
-    ]);
+    ])
+    .then(data => {
+         questionData.push(data);
+    });
 };
+
+// const mockData = {
+//     title: 'README Generator',
+//     github: 'KevinHeaton',
+//     email: 'williamkevinheaton@gmail.com',
+//     description: 'Automatically generates a professional README file for your project.',
+//     install: 'This is how you install this project.',
+//     usage: 'This is how you use this project.',
+//     contribution: 'This is how you contribute to this project.',
+//     test: 'This is how to test it.'
+// };
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/README.md', fileName, err => {
+        fs.writeFile('./dist/README.md', data, err => {
             if (err) {
                 reject(err);
                 return
@@ -137,20 +151,17 @@ function writeToFile(fileName, data) {
 };
 
 // TODO: Create a function to initialize app
-function init() {}
-questions()
-.then
+//function init() {}
+
+const readMe = questions(questionData);
+
 // Function call to initialize app
-init();
+//init();
+questions()
+.then(questionData => {
+    return generateMarkdown(questionData);
+})
+.then(readMe => {
+    return writeToFile(readMe);
+})
 
-
-// const mockData = {
-//     title: 'README Generator',
-//     github: 'KevinHeaton',
-//     email: 'williamkevinheaton@gmail.com',
-//     description: 'Automatically generates a professional README file for your project.',
-//     install: 'This is how you install this project.',
-//     usage: 'This is how you use this project.',
-//     contribution: 'This is how you contribute to this project.',
-//     test: 'This is how to test it.'
-// };
