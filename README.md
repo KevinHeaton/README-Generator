@@ -9,7 +9,7 @@
   - [License](#License)
   - [Contribute](#Contribute)
   - [Tests](#Tests)
-  - [Questions?](#Questions?)
+  - [Questions](#Questions)
 
   ## Installation
   Fork or clone the GitHub Repo and/or download the files containing the code. Open the code in your favorite code editor.
