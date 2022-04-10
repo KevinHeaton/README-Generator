@@ -32,7 +32,7 @@
   ## Tests
   You will need to have the generator open in your terminal or command line. You may also need to be in the same directory as index.js. Run 'node indes.js' in the terminal and you can test all of the prompts. As of now, none of the prompts are allowed to be skipped. Each time you test the code a new .md file will be created. Feel free to delete any unwanted .md files.
 
-  ## Questions?
+  ## Questions
   My GitHub page is located at github.com/KevinHeaton
   You can email me at williamkevinheaton@gmail.com
 
