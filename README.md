@@ -7,7 +7,7 @@
   - [Installation](#installation)
   - [Usage](#usage)
   - [License](#License)
-  - [How to Contribute](#How to Contribute)
+  - [Contribute](#Contribute)
   - [Tests](#Tests)
   - [Questions?](#Questions?)
 
@@ -23,7 +23,7 @@
   ## Video: How to Use
 
 
-  ## How to Contribute
+  ## Contribute
   Next steps: 
     1. Create options for a video demonstration or photo/screenshot of your project
     2. Allow for omition of sections the user does not want
